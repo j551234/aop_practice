@@ -34,7 +34,7 @@ public class LogAspect {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
         Action action = method.getAnnotation(Action.class);
-        System.out.println("前通知 " + action.value()); 
+        System.out.println("前通知 " + action.value() + "function 開始"); 
         logger.info("function start");
     }
  
