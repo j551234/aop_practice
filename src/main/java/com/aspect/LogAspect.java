@@ -13,7 +13,10 @@ import org.slf4j.LoggerFactory;
 
 import com.annotation.Action;
 import org.springframework.stereotype.Component;
-
+	/**
+	 * 如果為aop的話
+	 * 仍會依照controller自行設定的路由繼續執行
+	 * */
 @Aspect
 @Component
 public class LogAspect {
@@ -26,20 +29,15 @@ public class LogAspect {
     @Pointcut("@annotation(com.annotation.Action)")
     public void log() {}
 
-    /**
-     * 前置通知
-     */
     @Before("log()")
     public void doBeforeController(JoinPoint joinPoint) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
         Action action = method.getAnnotation(Action.class);
-        System.out.println("前通知 " + action.value() + "function 開始"); 
+        System.out.println(method + action.value() + "function 開始"); 
         logger.info("function start");
     }
  
-
-
     @AfterReturning(pointcut = "log()", returning = "retValue")
     public void doAfterController(JoinPoint joinPoint, Object retValue) {
         System.out.println("retValue is:" + retValue);
