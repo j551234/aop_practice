@@ -13,9 +13,9 @@ public class HelloController {
     public String hello() {
         return "Hello Spring Boot is using the aop";
     }
-    @RequestMapping("/index")
-    @ResponseBody
+    @Action("show")
+    @RequestMapping("/show")
     public String index() {
-    	return " index is using  the filter";
+    	return " index is using  the aop";
     }
 }

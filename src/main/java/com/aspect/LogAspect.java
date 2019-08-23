@@ -27,20 +27,26 @@ public class LogAspect {
 	 * 之後就在方法用@自訂義標籤來綁定這個aspect
 	 * */
     @Pointcut("@annotation(com.annotation.Action)")
-    public void log() {}
+    public void log() {
+    	logger.info("function is runnig");
+    }
 
     @Before("log()")
     public void doBeforeController(JoinPoint joinPoint) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
         Action action = method.getAnnotation(Action.class);
-        System.out.println(method + action.value() + "function 開始"); 
-        logger.info("function start");
+        logger.info(action.value()  + "-function start");
     }
  
-    @AfterReturning(pointcut = "log()", returning = "retValue")
-    public void doAfterController(JoinPoint joinPoint, Object retValue) {
-        System.out.println("retValue is:" + retValue);
-        logger.info("function end");
+    @AfterReturning(pointcut = "log()", returning = "showScreen")
+    public void doAfterController(JoinPoint joinPoint, Object showScreen) {
+      
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        Method method = signature.getMethod();
+        Action action = method.getAnnotation(Action.class);
+        System.out.println("showScreen is:" + showScreen);
+        logger.info(action.value() + "-function end"); 
+       
     }
 }
