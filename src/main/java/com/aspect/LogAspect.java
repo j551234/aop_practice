@@ -12,6 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.annotation.Action;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 	/**
 	 * 如果為aop的話
@@ -26,6 +28,11 @@ public class LogAspect {
 	 * @Pointcut("@annotation(自訂義annotation的class的位置))
 	 * 之後就在方法用@自訂義標籤來綁定這個aspect
 	 * */
+
+ 
+	
+	
+	
     @Pointcut("@annotation(com.annotation.Action)")
     public void log() {
     	logger.info("function is runnig");
@@ -36,17 +43,22 @@ public class LogAspect {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
         Action action = method.getAnnotation(Action.class);
-        logger.info(action.value()  + "-function start");
+
+        String class_name = joinPoint.getTarget().getClass().getName();
+        String method_name = joinPoint.getSignature().getName();
+        logger.info("class_name = {}", class_name);
+        logger.info("method_name = {}", method_name);
+        logger.info(action.value()  + " : function start");
     }
  
-    @AfterReturning(pointcut = "log()", returning = "showScreen")
-    public void doAfterController(JoinPoint joinPoint, Object showScreen) {
+    @AfterReturning(pointcut = "log()", returning = "retValue")
+    public void doAfterController(JoinPoint joinPoint, Object retValue) {
       
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
         Action action = method.getAnnotation(Action.class);
-        System.out.println("showScreen is:" + showScreen);
-        logger.info(action.value() + "-function end"); 
+        System.out.println("showScreen is:" + retValue);
+        logger.info(action.value() + " : function end"); 
        
     }
 }

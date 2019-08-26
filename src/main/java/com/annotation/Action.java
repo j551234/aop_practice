@@ -12,5 +12,6 @@ import java.lang.annotation.Target;
 public @interface Action {
 
     String value() default "";
+    String name() default "";
     //標籤裡面有value屬性可設定，如屬性名稱為value可以省略名稱直接指定直
 }
