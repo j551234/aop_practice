@@ -7,7 +7,7 @@ import javax.servlet.annotation.WebFilter;
  * 如果實作過濾的話會把requestmapping的路由給取代掉，抓進filter裡面
  * 不會返回controller指定的值
  */
-@WebFilter(urlPatterns = "/a", filterName = "testFilter")
+@WebFilter(urlPatterns = "/123", filterName = "testFilter")
 public class testFilter implements Filter {
     @Override
     public void destroy() {
@@ -21,6 +21,6 @@ public class testFilter implements Filter {
 
     @Override
     public void init(FilterConfig arg0) {
-        System.out.println("filter init method");
+//        System.out.println("filter init method");
     }
 }

@@ -1,23 +1,27 @@
 package com.controller;
 
 import com.annotation.Action;
-
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
 
     @RequestMapping("/")
-    @Action("hello")
+    @Action("dohello")
     public String hello() {
         return "Hello Spring Boot is using the aop";
     }
-    @Action(value="this(name)")
+
     @RequestMapping("/show")
+    @Action(value = "show gg")
     public String index() {
-    	return " index is using  the aop";
+        return " i am the action ";
+    }
+
+    @RequestMapping("/123")
+    @Action(value = "show gg")
+    public String oneTwoThree() {
+        return " say one two three";
     }
 }

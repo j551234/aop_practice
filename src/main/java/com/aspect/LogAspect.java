@@ -38,14 +38,16 @@ public class LogAspect {
 
     @Before("log()")
     public void doBeforeController(JoinPoint joinPoint) {
+        // see the joinPoint info
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
-        Action action = method.getAnnotation(Action.class);
 
         String class_name = joinPoint.getTarget().getClass().getName();
         String method_name = joinPoint.getSignature().getName();
-        logger.info("class_name = {}", class_name);
-        logger.info("method_name = {}", method_name);
+        logger.info("class_name = {} start", class_name);
+        logger.info("method_name = {} start ", method_name);
+
+        Action action = method.getAnnotation(Action.class);
         logger.info(action.value() + " : function start");
     }
 
@@ -53,10 +55,13 @@ public class LogAspect {
     public void doAfterController(JoinPoint joinPoint, Object retValue) {
 
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-        Method method = signature.getMethod();
-        Action action = method.getAnnotation(Action.class);
+        String class_name = joinPoint.getTarget().getClass().getName();
+        String method_name = joinPoint.getSignature().getName();
+        logger.info("class_name = {} end", class_name);
+        logger.info("method_name = {} end ", method_name);
+
         System.out.println("showScreen is:" + retValue);
-        logger.info(action.value() + " : function end");
+
 
     }
 }
