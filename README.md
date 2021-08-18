@@ -71,3 +71,6 @@ AOP 是將這些共通工作從原方法「分離」出來，並設定某個時�
         return "Hello Spring Boot is using the aop";
     }
 ```
+
+---
+Ref:https://chikuwa-tech-study.blogspot.com/2021/06/spring-boot-aop-introduction.html
