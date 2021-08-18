@@ -1,6 +1,8 @@
 package com.controller;
 
 import com.annotation.Action;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,4 +26,13 @@ public class HelloController {
     public String oneTwoThree() {
         return " say one two three";
     }
+
+    @GetMapping(value = "/message")
+    public String getMessage() {
+        String message = "show me the message ";
+        System.out.println("MessageController.getMessage():" + message);
+        return message;
+    }
+
+
 }

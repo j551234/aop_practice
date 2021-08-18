@@ -36,7 +36,7 @@ public class LogAspect {
 
     @Around("log()")
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
-        System.out.println("-----around with pointcut expression: bean(userService)------");
+        System.out.println("-----around------");
         System.out.println("---------------------呼叫前---------------------");
         Object result = pjp.proceed();
         System.out.println("---------------------呼叫後---------------------");
@@ -76,7 +76,7 @@ public class LogAspect {
 
     @After("log()")
     public void after() {
-        System.out.println("-----after with pointcut expression: bean(userService)------");
+        System.out.println("-----after with pointcut expression: ------");
     }
 
     @AfterThrowing(pointcut = "log()", throwing = "ex")
