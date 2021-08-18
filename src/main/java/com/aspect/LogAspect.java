@@ -3,10 +3,8 @@ package com.aspect;
 import java.lang.reflect.Method;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +34,16 @@ public class LogAspect {
     public void log() {
     }
 
+    @Around("log()")
+    public Object around(ProceedingJoinPoint pjp) throws Throwable {
+        System.out.println("-----around with pointcut expression: bean(userService)------");
+        System.out.println("---------------------呼叫前---------------------");
+        Object result = pjp.proceed();
+        System.out.println("---------------------呼叫後---------------------");
+        return result;
+    }
+
+
     @Before("log()")
     public void doBeforeController(JoinPoint joinPoint) {
         // see the joinPoint info
@@ -64,4 +72,17 @@ public class LogAspect {
 
 
     }
+
+
+    @After("log()")
+    public void after() {
+        System.out.println("-----after with pointcut expression: bean(userService)------");
+    }
+
+    @AfterThrowing(pointcut = "log()", throwing = "ex")
+    public void doAfterException(Exception ex) {
+
+        System.out.println("error is:" + ex);
+    }
+
 }
