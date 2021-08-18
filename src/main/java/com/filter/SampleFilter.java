@@ -8,7 +8,7 @@ import javax.servlet.annotation.WebFilter;
  * 不會返回controller指定的值
  */
 @WebFilter(urlPatterns = "/123", filterName = "testFilter")
-public class testFilter implements Filter {
+public class SampleFilter implements Filter {
     @Override
     public void destroy() {
         System.out.println("filter destroy method");
