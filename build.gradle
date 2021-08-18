@@ -1,7 +1,7 @@
 plugins {
-	id 'org.springframework.boot' version '2.1.7.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
-	id 'java'
+    id 'org.springframework.boot' version '2.5.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
 }
 
 group = 'com.example'
@@ -9,17 +9,12 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-web-services'
-	implementation 'org.springframework.boot:spring-boot-starter-logging'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: '2.1.7.RELEASE'
-	compile group: 'org.aspectj', name: 'aspectjrt', version: '1.7.0'
-	compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.7.0'
-	
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: '2.5.3'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
