@@ -9,20 +9,23 @@ AOP 是將這些共通工作從原方法「分離」出來，並設定某個時�
 
 @Target指定Annotation所修飾範圍： 
 取值(ElementType)有：
-
-1.CONSTRUCTOR:用於建構式
-2.FIELD:用於作用域
-3.LOCAL_VARIABLE:用於區域變數
-4.METHOD:用於方法 
-5.PACKAGE:用於描述包裝
-6.PARAMETER:用於描述變數
-7.TYPE:用描述類別、interface或enum
+|種類|執行時間 |
+| -------- | -------- | 
+|CONSTRUCTOR|用於建構式|
+|FIELD|用於作用域|
+|LOCAL_VARIABLE|用於區域變數|
+|METHOD|用於方法 |
+|PACKAGE|用於描述包裝|
+|PARAMETER|用於描述變數|
+|TYPE|用描述類別、interface或enum|
 
 
 @Retention用來指定保留階段
-1.RetentionPolicy.SOURCE —— 這種Annotations只保留在code中，compile時間就會被忽略
-2.RetentionPolicy.CLASS —— 這種Annotations保留在compile期間,在class中存在,但JVM會忽略
-3.RetentionPolicy.RUNTIME —— 這種Annotations會在JVM保留,運行時被JVM或其他使用relection的code所使用
+|RetentionPolicy|執行時間 |
+| -------- | -------- | 
+| RetentionPolicy.SOURCE |  這種Annotations只保留在code中，compile時間就會被忽略| 
+| RetentionPolicy.CLASS |  這種Annotations保留在compile期間,在class中存在,但JVM會忽略| 
+| RetentionPolicy.RUNTIME |  這種Annotations會在JVM保留,運行時被JVM或其他使用relection的code所使用| 
 
 ```java=
     @Target({ ElementType.PARAMETER, ElementType.METHOD })
@@ -56,3 +59,15 @@ AOP 是將這些共通工作從原方法「分離」出來，並設定某個時�
 |@After  |方法結束後去呼叫|
 |@AfterReturning| 方法回傳值時呼叫，可接收回傳值|
 |@AfterThrowing  |方法丟出錯誤時呼叫，可接收方法丟出錯誤|
+
+
+
+## 使用
+在要呼叫使用aop的地方加上＠標籤
+```java=
+    @RequestMapping("/")
+    @Action("dohello")
+    public String hello() {
+        return "Hello Spring Boot is using the aop";
+    }
+```
