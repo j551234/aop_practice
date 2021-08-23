@@ -1,7 +1,8 @@
 package com.controller;
 
 import com.annotation.Action;
-import org.springframework.http.MediaType;
+import com.service.DoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,9 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
+    DoService doService;
+    @Autowired
+    HelloController(){
+        this.doService= doService;
+    }
+
+
+
     @RequestMapping("/")
-    @Action("dohello")
+    @Action
     public String hello() {
+        System.out.println("Hello Spring Boot is using the aop");
         return "Hello Spring Boot is using the aop";
     }
 
@@ -32,6 +42,11 @@ public class HelloController {
         String message = "show me the message ";
         System.out.println("MessageController.getMessage():" + message);
         return message;
+    }
+
+    @GetMapping("aaa")
+    public String sayA() {
+        return doService.sayHi();
     }
 
 

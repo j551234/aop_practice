@@ -37,9 +37,9 @@ public class LogAspect {
     @Around("log()")
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
         System.out.println("-----around------");
-        System.out.println("---------------------呼叫前---------------------");
+        System.out.println("---------------------process before---------------------");
         Object result = pjp.proceed();
-        System.out.println("---------------------呼叫後---------------------");
+        System.out.println("---------------------process after---------------------");
         return result;
     }
 

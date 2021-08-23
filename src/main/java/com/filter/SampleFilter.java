@@ -21,6 +21,5 @@ public class SampleFilter implements Filter {
 
     @Override
     public void init(FilterConfig arg0) {
-//        System.out.println("filter init method");
     }
 }
