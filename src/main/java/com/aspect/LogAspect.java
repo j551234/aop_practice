@@ -36,10 +36,10 @@ public class LogAspect {
 
     @Around("log()")
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
-        System.out.println("-----around------");
-        System.out.println("---------------------process before---------------------");
+        System.out.println("aspect : around");
+        System.out.println("aspect : process before");
         Object result = pjp.proceed();
-        System.out.println("---------------------process after---------------------");
+        System.out.println("aspect : process after");
         return result;
     }
 
@@ -49,7 +49,7 @@ public class LogAspect {
         // see the joinPoint info
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
-
+        System.out.println("aspect : before");
         String class_name = joinPoint.getTarget().getClass().getName();
         String method_name = joinPoint.getSignature().getName();
         logger.info("class_name = {} start", class_name);
@@ -61,7 +61,7 @@ public class LogAspect {
 
     @AfterReturning(pointcut = "log()", returning = "retValue")
     public void doAfterController(JoinPoint joinPoint, Object retValue) {
-
+        System.out.println("aspect : after return");
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         String class_name = joinPoint.getTarget().getClass().getName();
         String method_name = joinPoint.getSignature().getName();
@@ -76,7 +76,7 @@ public class LogAspect {
 
     @After("log()")
     public void after() {
-        System.out.println("-----after with pointcut expression: ------");
+        System.out.println("aspect : after");
     }
 
     @AfterThrowing(pointcut = "log()", throwing = "ex")

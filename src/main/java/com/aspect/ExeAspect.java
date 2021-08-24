@@ -15,12 +15,12 @@ public class ExeAspect {
 
     @Before("pointCut()")
     public void sayHi() {
-        System.out.println("before hi");
+        System.out.println("aspect : before hi");
     }
 
     @After("pointCut()")
     public void sayEnd() {
-        System.out.println("after hi");
+        System.out.println("aspect : after hi");
     }
 
 }

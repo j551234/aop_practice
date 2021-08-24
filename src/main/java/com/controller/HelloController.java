@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-    DoService doService;
+    private DoService doService;
+
     @Autowired
-    HelloController(){
-        this.doService= doService;
+    HelloController(DoService doService) {
+        this.doService = doService;
     }
 
-
-
+    // aop
     @RequestMapping("/")
     @Action
     public String hello() {
@@ -25,18 +25,20 @@ public class HelloController {
         return "Hello Spring Boot is using the aop";
     }
 
+    // aop annotation
     @RequestMapping("/show")
-    @Action(value = "show gg")
+    @Action
     public String index() {
         return " i am the action ";
     }
 
+    // filter
     @RequestMapping("/123")
-    @Action(value = "show gg")
     public String oneTwoThree() {
         return " say one two three";
     }
 
+    // interceptor
     @GetMapping(value = "/message")
     public String getMessage() {
         String message = "show me the message ";
@@ -44,7 +46,8 @@ public class HelloController {
         return message;
     }
 
-    @GetMapping("aaa")
+    // aop  service
+    @GetMapping("/aaa")
     public String sayA() {
         return doService.sayHi();
     }

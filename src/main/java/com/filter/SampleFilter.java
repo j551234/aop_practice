@@ -2,11 +2,10 @@ package com.filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
-
+import java.io.IOException;
 /**
- * 如果實作過濾的話會把requestmapping的路由給取代掉，抓進filter裡面
- * 不會返回controller指定的值
- */
+ * url patterns design filter route path
+ * */
 @WebFilter(urlPatterns = "/123", filterName = "testFilter")
 public class SampleFilter implements Filter {
     @Override
@@ -14,9 +13,14 @@ public class SampleFilter implements Filter {
         System.out.println("filter destroy method");
     }
 
+    /**
+     * if not use filter chain function will skip function
+     *
+     */
     @Override
-    public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain arg2) {
-        System.out.println("filter doFilter method");
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        System.out.println("filter : doFilter method");
+        filterChain.doFilter(request, response);
     }
 
     @Override
